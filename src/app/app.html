@@ -8,12 +8,22 @@
 
   <ion-content>
     <ion-list>
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+      <div *ngFor="let d of dividers">
+        <button ion-item (click)="openDivider(d)">
+          {{ d.title }}
+        </button>
+          <ion-item-divider *ngIf="d.open">
+            <ion-list no-lines>
+              <button ion-item *ngFor="let p of d.pages" (click)="openPage(p)">
+                {{ p.title }}
+              </button>
+            </ion-list>
+          </ion-item-divider>
+      </div>
     </ion-list>
   </ion-content>
 
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>
