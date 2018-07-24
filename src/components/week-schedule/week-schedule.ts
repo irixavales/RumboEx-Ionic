@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MbscEventcalendarOptions } from '@mobiscroll/angular';
+import {TaskProvider} from "../../providers/task/task";
 
 let now = new Date();
 
@@ -9,6 +10,22 @@ let now = new Date();
 })
 
 export class WeekScheduleComponent {
+
+  studyTasks: any = [];
+  personalTasks: any;
+  courseTasks: any = [];
+
+  constructor(private taskProvider: TaskProvider) {
+    this.loadTasks();
+  }
+
+  loadTasks() {
+      this.taskProvider.loadTasks().then(data => {this.personalTasks = data; console.log('personal tasks:', this.personalTasks)});
+        // this.personalTasks = res.personalTasks;
+        // this.studyTasks = res.studyTasks;
+        // this.courseTasks = res.courseTasks;
+      // });
+  }
 
   events: Array < any > = [{
         d: new Date(now.getFullYear(), now.getMonth(), 8, 8, 0),

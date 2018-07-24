@@ -12,26 +12,31 @@ export class TaskProvider {
 
   base_url: string;
 
-  personal_tasks: Array<any>;
-  study_tasks: Array<any>;
-  course_tasks: Array<any>;
+  personalTasks: Array<any>;
+  studyTasks: Array<any>;
+  courseTasks: Array<any>;
 
   constructor(public http: HttpClient) {
-    this.base_url = "http://localhost:5000/task"
-    this.personal_tasks = null;
-    this.study_tasks = null;
-    this.course_tasks = null;
+    this.base_url = "http://localhost:5000/task";
+    this.personalTasks = [];
+    this.studyTasks = [];
+    this.courseTasks = [];
   }
 
-  load() {
-    // return new Promise( resolve => {
-    //   this.http.get(this.base_url + '/personal')
-    //     .map(res => res.json())
-    //     .subscribe(data => {
-    //       this.personal_tasks = data;
-    //       resolve(this.personal_tasks)
-    //     });
-    // });
+  loadTasks() {
+    // let tasks = {};
+    // tasks['personal'] = this.http.get(this.base_url + '/personal').map(res => res.json());
+    // tasks['study'] = this.http.get(this.base_url + '/study').map(res => res.json())
+    // tasks['course'] = this.http.get(this.base_url + '/course').map(res => res.json())
+    // console.log(tasks);
+    // return tasks;
+    return new Promise(resolve => {
+      this.http.get(this.base_url + '/personal/2')
+        .subscribe(data => {
+          resolve(data);
+        }, error => {
+          console.log(error);
+        });
+    });
   }
-
 }
