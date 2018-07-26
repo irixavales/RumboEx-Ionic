@@ -10,6 +10,7 @@ import {CalendarComponent} from "../components/calendar/calendar";
 import {DayScheduleComponent} from "../components/day-schedule/day-schedule";
 import {WeekScheduleComponent} from "../components/week-schedule/week-schedule";
 import {IndividualCourseComponent} from "../components/individual-course/individual-course";
+import {PopupComponent} from "../components/popup/popup";
 
 
 @Component({
@@ -41,8 +42,8 @@ export class MyApp {
 
     this.course_pages = [
       { title: 'this is hardcoded', component: IndividualCourseComponent },
-      { title: 'Mate', component: HelloIonicPage },
-      { title: 'Icom', component: HelloIonicPage },
+      { title: 'Mate', component: IndividualCourseComponent },
+      { title: 'Icom', component: CalendarComponent },
       { title: 'Quim', component: HelloIonicPage },
       { title: 'Inge', component: HelloIonicPage }
     ];
@@ -64,11 +65,17 @@ export class MyApp {
     });
   }
 
-  openDivider(divider) {
+  toggleDivider(divider) {
     // close other dividers
     this.dividers.map(divider => divider.open = false);
-    // open selected divider
-    divider.open = true;
+    // open selected divider if closed
+    if(divider.open == false) {
+      divider.open = true;
+    }
+    // close selected divider if opened
+    else {
+      divider.open = false;
+    };
   }
 
   openPage(page) {

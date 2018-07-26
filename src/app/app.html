@@ -9,7 +9,7 @@
   <ion-content>
     <ion-list>
       <div *ngFor="let d of dividers">
-        <button ion-item (click)="openDivider(d)">
+        <button ion-item (click)="toggleDivider(d)">
           {{ d.title }}
         </button>
           <ion-item-divider *ngIf="d.open">
@@ -23,7 +23,7 @@
     </ion-list>
   </ion-content>
 
-</ion-menu>
 
+</ion-menu>
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>

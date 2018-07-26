@@ -1,6 +1,7 @@
 import { MbscModule } from '@mobiscroll/angular';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -17,7 +18,8 @@ import {CalendarComponent} from "../components/calendar/calendar";
 import {DayScheduleComponent} from "../components/day-schedule/day-schedule";
 import {WeekScheduleComponent} from "../components/week-schedule/week-schedule";
 import {IndividualCourseComponent} from "../components/individual-course/individual-course";
-import { TaskProvider } from '../providers/task/task';
+import {PopupComponent} from "../components/popup/popup";
+import { TaskProvider } from '../providers/task/taskProvider';
 
 @NgModule({
   declarations: [
@@ -28,12 +30,14 @@ import { TaskProvider } from '../providers/task/task';
     CalendarComponent,
     DayScheduleComponent,
     WeekScheduleComponent,
-    IndividualCourseComponent
+    IndividualCourseComponent,
+    PopupComponent
   ],
   imports: [ 
     MbscModule,
     FormsModule,
     BrowserModule,
+    HttpClientModule,
     RouterModule,
     IonicModule.forRoot(MyApp),
   ],
@@ -49,7 +53,8 @@ import { TaskProvider } from '../providers/task/task';
     CalendarComponent,
     DayScheduleComponent,
     WeekScheduleComponent,
-    IndividualCourseComponent
+    IndividualCourseComponent,
+    PopupComponent
   ],
   providers: [
     StatusBar,
