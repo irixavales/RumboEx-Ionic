@@ -68,9 +68,11 @@ export class TaskProvider {
       end: end
     };
 
-    this.http.post(this.base_url + '/personal/37', JSON.stringify(credentials), {headers: headers})
+    this.http.post(this.base_url + '/personal/37', credentials, {headers: headers})
       .subscribe((res) => {
         // here goes loading dismiss
+      }, error => {
+        console.log('error: ', error);
       });
   }
 }

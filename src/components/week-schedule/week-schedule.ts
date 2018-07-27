@@ -25,51 +25,48 @@ export class WeekScheduleComponent {
 
     this.taskProvider.loadStudyTasks().then(data => {
         this.studyTasks = data;
-        this.mapTasksToCalendar();
+        this.mapStudyTaskToCalendar();
         console.log('study tasks:', this.studyTasks);
       });
 
     this.taskProvider.loadPersonalTasks().then(data => {
         this.personalTasks = data;
-        this.mapTasksToCalendar();
+        this.mapPersonalTaskToCalendar();
         console.log('personal tasks:', this.personalTasks);
       });
 
     this.taskProvider.loadCourseTasks().then(data => {
         this.courseTasks = data;
-        this.mapTasksToCalendar();
+        this.mapCourseTaskToCalendar();
         console.log('course tasks:', this.courseTasks);
       });
   }
 
-  mapTasksToCalendar() {
-
-    for(let task of this.personalTasks) {
-      this.events.push({
-        d: now,
-        text: task.title,
-        color: '#00aabb',
-        description: task.description
-      });
+  mapTasksToCalendar(task) {
+    this.events.push({
+      d: now,
+      text: task.title,
+      color: '#00aabb',
+      description: task.description
       // console.log(typeof task.start);
-    }
+    });
+  }
 
+  mapStudyTaskToCalendar() {
     for(let task of this.studyTasks) {
-      this.events.push({
-        d: now,
-        text: task.title,
-        color: '#6e7f29',
-        description: task.description
-      })
+      this.mapTasksToCalendar(task);
     }
+  }
 
+  mapPersonalTaskToCalendar() {
+    for(let task of this.personalTasks) {
+      this.mapTasksToCalendar(task);
+    }
+  }
+
+  mapCourseTaskToCalendar() {
     for(let task of this.courseTasks) {
-      this.events.push({
-        d: now,
-        text: task.title,
-        color: '#de3d83',
-        description: task.description
-      })
+      this.mapTasksToCalendar(task);
     }
   }
 
